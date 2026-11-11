@@ -1,0 +1,22 @@
+﻿Custom Versification Editor is a Paratext tool for a project's custom.vrs, the file that says how the project's chapter and verse numbering differs from its standard versification. Add chapters with a different number of verses, map verses to the standard versification, and list verses the translation leaves out, without typing the file by hand. Each entry can be turned off without deleting it.
+
+Download Install_Phils_tools.exe from the Paratext Plugins folder, and tick Custom Versification Editor in it:
+https://short.do/HgUb7T
+
+0:23 How do I open Custom Versification Editor?
+0:32 What does the editor show?
+0:55 How do I give a chapter a different number of verses?
+1:08 How do I turn an entry off without deleting it?
+1:22 How do I map a verse to the standard versification?
+1:40 Where do I see the mappings?
+1:48 How do I list a missing verse?
+2:07 Why is each missing verse listed separately?
+2:17 How do I save custom.vrs?
+2:31 Why doesn't Paratext show my changes yet?
+2:46 How do I install the tool?
+
+Created with Claude AI.
+Narration: AI-generated voice (Microsoft Azure AI Speech, voice "Jenny").
+Music from Free To Use
+Source: https://freetouse.com/music
+Coconut Kind of Love by Aetheric

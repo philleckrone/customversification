@@ -1,0 +1,5 @@
+C:\ClaudeCode Projects\Custom_Versification_Editor\CustomVrsPlugin\bin\Release\CustomVrsEditorPlugin.dll
+C:\ClaudeCode Projects\Custom_Versification_Editor\CustomVrsPlugin\bin\Release\CustomVrsEditorPlugin.pdb
+C:\ClaudeCode Projects\Custom_Versification_Editor\CustomVrsPlugin\obj\Release\CustomVrsPlugin.csprojResolveAssemblyReference.cache
+C:\ClaudeCode Projects\Custom_Versification_Editor\CustomVrsPlugin\obj\Release\CustomVrsEditorPlugin.dll
+C:\ClaudeCode Projects\Custom_Versification_Editor\CustomVrsPlugin\obj\Release\CustomVrsEditorPlugin.pdb

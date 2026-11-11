@@ -1,0 +1,19 @@
+Mimicing the behavior of the AutoCorrectEditorCms.exe I'd like to create a similar tool to create or edit a project's custom.vrs file.
+Examples of custom.vrs files can be found at C:\ClaudeCode Projects\Versifications
+Generally there will be three sections to a custom.vrs file.
+1) # Chapters with different number of verses than Original
+EXO 37:21 38:27 39:23
+2) # Mapping
+EXO 21:16 = EXO 21:17
+EXO 21:17 = EXO 21:16
+3) # Missing verses
+-MRK 7:16
+-MRK 9:44
+-MRK 9:46
+-MRK 11:26
++++++++++++
+The tool should offer these three sections and provide a place to add the changes.
+For #Mappings, the user should just type one verse in one box and the other verse in the other box. Pressing Accept should add the item to the custom.vrs file for the project.
+For #Missing verses, the user should just type the missing verse and the tool will add the minus sign.
+Regardless of the order in which items are added, the tool should place them in the correct sequence.
+There should be an option to delete a particular line or to disable it. Disabling it simply places a # sign at the beginning of the line.

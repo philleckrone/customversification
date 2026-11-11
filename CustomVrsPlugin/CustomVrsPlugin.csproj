@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+          Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F8B173CE-6BA4-4356-9F51-C8C9529A27B5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CustomVrsPlugin</RootNamespace>
+    <!-- Must differ from the editor exe's assembly name (CustomVrsEditor). -->
+    <AssemblyName>CustomVrsEditorPlugin</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <LangVersion>5</LangVersion>
+    <!-- Paratext install folder: the plugin compiles against its PluginInterfaces (2.0.100 on 9.5). -->
+    <ParatextInstallDir Condition=" '$(ParatextInstallDir)' == '' ">C:\Program Files\Paratext 9\</ParatextInstallDir>
+    <!-- Without a .NET 4.8 targeting pack, following PluginInterfaces' netstandard dependencies
+         copies mscorlib.dll and friends into bin. All references come from Paratext or .NET. -->
+    <_FindDependencies>false</_FindDependencies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <!-- PluginInterfaces is built on .NET Standard 2.0. -->
+    <!-- Resolved from the GAC (no HintPath): a HintPath into the Framework folder made MSBuild copy mscorlib.dll locally. -->
+    <Reference Include="netstandard">
+      <Private>False</Private>
+    </Reference>
+    <!-- Provided by Paratext at run time: never copied into the plugin folder. -->
+    <Reference Include="PluginInterfaces">
+      <HintPath>$(ParatextInstallDir)PluginInterfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CorePluginInterfaces">
+      <HintPath>$(ParatextInstallDir)CorePluginInterfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomVrsEditorPlugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

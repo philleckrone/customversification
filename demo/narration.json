@@ -1,0 +1,75 @@
+{
+  "cues": "{1} before a phrase shows box 1 of the step from there on, {0,2} boxes 0 and 2, {} none; the pointer goes on the first box named. Cues are not spoken or shown. 'q' is the step's question in the YouTube timecodes (youtubetext.txt).",
+  "youtube": {
+    "en": {
+      "about": "Custom Versification Editor is a Paratext tool for a project's custom.vrs, the file that says how the project's chapter and verse numbering differs from its standard versification. Add chapters with a different number of verses, map verses to the standard versification, and list verses the translation leaves out, without typing the file by hand. Each entry can be turned off without deleting it.",
+      "download": "Download Install_Phils_tools.exe from the Paratext Plugins folder, and tick Custom Versification Editor in it:",
+      "link": "https://short.do/HgUb7T",
+      "credits": [
+        "Created with Claude AI.",
+        "Narration: AI-generated voice (Microsoft Azure AI Speech, voice \"Jenny\").",
+        "Music from Free To Use",
+        "Source: https://freetouse.com/music",
+        "Coconut Kind of Love by Aetheric"
+      ]
+    }
+  },
+  "steps": [
+    {
+      "id": "title",
+      "en": { "title": "Custom Versification Editor", "sub": "A Paratext tool: change a project's verse numbering, without editing the file by hand", "text": "Custom Versification Editor is a Paratext tool. It edits a project's custom.vrs, the file that says how the project's chapter and verse numbering differs from its standard versification. You don't have to type the file by hand." }
+    },
+    {
+      "id": "s00_menu",
+      "en": { "title": "Open it from the Tools menu", "q": "How do I open Custom Versification Editor?", "text": "In Paratext, open the project. Then choose {0}Tools, then {1}Custom Versification Editor." }
+    },
+    {
+      "id": "s01_open",
+      "en": { "title": "It opens your project's custom.vrs", "q": "What does the editor show?", "text": "The editor opens your project's custom.vrs. {0}At the top are the project and its standard versification. {1}The yellow bar reminds you to restart Paratext after saving. {2}There are three kinds of entries, each on its own tab. {3}This project already has one: Revelation 12 has 17 verses." }
+    },
+    {
+      "id": "s02_chapter",
+      "en": { "title": "A chapter with a different number of verses", "q": "How do I give a chapter a different number of verses?", "text": "In many Spanish Bibles, Third John has 15 verses instead of 14. To record that, choose {0}the book, type {1}the chapter {2}and its last verse, {3}then click Accept." }
+    },
+    {
+      "id": "s03_added",
+      "en": { "title": "Added in Bible order", "q": "How do I turn an entry off without deleting it?", "text": "{0}The entry is added, and the list is kept in Bible order. {1}Tick Disabled to turn an entry off without deleting it. It stays in the file as a comment, and Paratext ignores it." }
+    },
+    {
+      "id": "s04_mapping",
+      "en": { "title": "Map a verse", "q": "How do I map a verse to the standard versification?", "text": "On the Mapping tab, you link a verse of the project to a verse of the standard versification. Here, {0}the project's verse 15 {1}goes with verse 14. {2}Click Accept. For a range, fill in the small box after the verse as well." }
+    },
+    {
+      "id": "s05_mapped",
+      "en": { "title": "The mapping is listed", "q": "Where do I see the mappings?", "text": "{0}The mapping is listed. To remove an entry, select it and click Delete." }
+    },
+    {
+      "id": "s06_missing",
+      "en": { "title": "A verse the translation leaves out", "q": "How do I list a missing verse?", "text": "On the Missing Verses tab, list the verses that are not in the translation, for example Matthew 17, verse 21. {0}Fill in the book, chapter and verse. {1}To add several verses in a row, fill in the last one here. {2}Click Accept." }
+    },
+    {
+      "id": "s07_missing_added",
+      "en": { "title": "Each missing verse on its own line", "q": "Why is each missing verse listed separately?", "text": "{0}Each missing verse is listed on its own, as custom.vrs requires. {1}Here too, Disabled turns an entry off." }
+    },
+    {
+      "id": "s08_save",
+      "en": { "title": "Save custom.vrs", "q": "How do I save custom.vrs?", "text": "{0}Choose File, then Save. The changes are saved in the project's custom.vrs. If the project had no custom.vrs yet, saving creates it." }
+    },
+    {
+      "id": "s09_restart",
+      "en": { "title": "Restart Paratext", "q": "Why doesn't Paratext show my changes yet?", "text": "{0}The status bar shows the file and how many entries it has. {1}Paratext reads custom.vrs only when it starts. So close Paratext and open it again to use the new numbering." }
+    },
+    {
+      "id": "sec_install",
+      "en": { "title": "Installing the tool", "q": "How do I install the tool?", "text": "Installing the tool." }
+    },
+    {
+      "id": "i5_ready",
+      "en": { "title": "Ready to use", "text": "Start Paratext again. {1,0}Custom Versification Editor is now on the Tools menu." }
+    },
+    {
+      "id": "end",
+      "en": { "title": "Custom Versification Editor", "sub": "Chapters, mappings and missing verses  ·  Turn entries off without deleting them  ·  Restart Paratext after saving", "text": "Custom Versification Editor records how your project's numbering differs from its standard versification: chapters with a different number of verses, mappings, and missing verses. Remember to restart Paratext after you save." }
+    }
+  ]
+}

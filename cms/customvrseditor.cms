@@ -1,0 +1,7 @@
+﻿\check Custom Versification Editor
+\subMenu Versification
+\script customvrseditor.py
+\description Opens the Custom Versification Editor for this project's custom.vrs file
+\noText
+\toHtml 
+\utf8
