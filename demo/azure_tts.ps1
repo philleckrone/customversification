@@ -22,7 +22,7 @@ function Get-AzureSpeechSetting($name) {
 # user's request.
 $script:SayAs = @{
     # Custom Versification Editor: file names and book codes spelled out.
-    'en' = @{ 'Paratext' = 'Pair-uh-text'; 'custom.vrs' = 'custom dot V R S'; 'Settings.xml' = 'Settings dot X M L' }
+    'en' = @{ 'Paratext' = 'Pair-uh-text'; "Paratext's" = 'Pair-uh-texts'; 'custom.vrs' = 'custom dot V R S'; 'Settings.xml' = 'Settings dot X M L' }
     'es' = @{ 'custom.vrs' = 'custom punto V R S'; 'Settings.xml' = 'Settings punto X M L' }
     'fr' = @{ 'custom.vrs' = 'custom point V R S'; 'Settings.xml' = 'Settings point X M L' }
 }
@@ -34,10 +34,19 @@ function Speak-Azure([string]$Text, [string]$Voice, [string]$OutFile, [string]$R
     $lang = ($Voice -split '-')[0..1] -join '-'
     $esc = [Security.SecurityElement]::Escape($Text)
     $words = $script:SayAs[($lang -split '-')[0]]
-    if ($words) {
-        foreach ($w in $words.Keys) {
-            $esc = [regex]::Replace($esc, '\b' + [regex]::Escape($w) + '\b', "<sub alias='$($words[$w])'>$w</sub>")
-        }
+    if ($words -and $words.Count) {
+        # One pattern for all the words, longest first, so "Paratext's" wins over "Paratext" and no
+        # <sub> lands inside another. The words are matched as the text was escaped above (' is
+        # &apos;); a typographic apostrophe is accepted too.
+        $keys = @($words.Keys | Sort-Object { $_.Length } -Descending)
+        $alts = @($keys | ForEach-Object { [regex]::Escape([Security.SecurityElement]::Escape($_)).Replace('&apos;', "(?:&apos;|$([char]0x2019))") })
+        $rx = New-Object Text.RegularExpressions.Regex ('(?<!\w)(' + ($alts -join '|') + ')(?!\w)')
+        $esc = $rx.Replace($esc, [Text.RegularExpressions.MatchEvaluator] {
+            param($m)
+            $i = 0
+            for ($k = 0; $k -lt $keys.Count; $k++) { if ([regex]::IsMatch($m.Value, '^(?:' + $alts[$k] + ')$')) { $i = $k; break } }
+            "<sub alias='$($words[$keys[$i]])'>$($m.Value)</sub>"
+        })
     }
     $ssml = "<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='$lang'>" +
         "<voice name='$Voice'><prosody rate='$Rate'>$esc</prosody></voice></speak>"
