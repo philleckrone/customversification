@@ -63,6 +63,9 @@ $exeProtected = ('0' -eq '1') -and [bool]$exeFile
 $pluginFolderFiles = @($pluginFile)
 if ($exeFile -and -not $exeProtected) { $pluginFolderFiles += $exeFile }
 $sourceDir  = Join-Path $PSScriptRoot $folderName
+# Files an older version of this plugin left in its plugins folder: install and uninstall
+# delete them, so the folder is not left behind with no plugin in it.
+$oldFiles = @()
 # SHA-256 of each package file, written by make_installers.py.
 $expectedHashes = @{ 'CustomVrsEditorPlugin.ptxplg' = 'ec75c8add4c3761413b945b70d997574148457009932e365a634a57b90d6dcbe'; 'CustomVrsEditor.exe' = '480624647923689d863c312ec7a43be3e2a1de978beb9c6ac63f753d019a8321' }
 # Windows PowerShell by its real path, never through PATH or the current folder.
@@ -446,6 +449,7 @@ function Install-PluginFiles($installs, $packageBytes) {
         foreach ($p in $i, $plugins, $target) { Assert-NotReparsePoint $p }
         if (-not (Test-Path -LiteralPath $target)) { New-Item -ItemType Directory -Path $target | Out-Null }
         foreach ($f in $pluginFolderFiles) { Write-OwnFile $target $f $packageBytes[$f] }
+        foreach ($f in $oldFiles) { if (Remove-OwnFile $target $f) { Write-Host "  Removed $f, left by an older version." } }
         # A protected program left in the plugins folder by an older version is removed.
         if ($exeProtected -and (Remove-OwnFile $target $exeFile)) { Write-Host "  Removed the old copy of $exeFile from the plugins folder." }
     }
@@ -458,7 +462,7 @@ function Remove-PluginFiles($installs) {
         $target = Join-Path $plugins $folderName
         if (-not (Test-Path -LiteralPath $target)) { Write-Host "Not installed in $i"; continue }
         foreach ($p in $i, $plugins, $target) { Assert-NotReparsePoint $p }
-        foreach ($f in $packageFiles) { Remove-OwnFile $target $f | Out-Null }
+        foreach ($f in @($packageFiles) + @($oldFiles)) { Remove-OwnFile $target $f | Out-Null }
         $left = @(Get-ChildItem -LiteralPath $target -Force)
         if ($left.Count -eq 0) {
             Assert-NotReparsePoint $target
